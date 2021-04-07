@@ -60,4 +60,12 @@ dependencies {
     implementation "co.zsmb:rainbow-cake-navigation:$rainbow_cake_version"
     implementation "co.zsmb:rainbow-cake-timber:$rainbow_cake_version"
 
+    // OkHttp
+    def okHttp_version = '4.3.1'
+    implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
+
+    // Retrofit
+    def retrofit_version = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
 }
