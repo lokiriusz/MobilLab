@@ -1,0 +1,100 @@
+openapi: 3.0.0
+tags:
+  - name: jokes
+  - name: favourites
+info:
+  title: api
+  version: '1.0'
+  description: 'Imaginary API of a BME MobilLabor project based on https://api.chucknorris.io.'
+  contact:
+    name: Laki Dávid
+servers:
+  - url: 'https://api.chucknorris.io'
+    description: Production
+paths:
+  /jokes/random:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - jokes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JokeDTO'
+      operationId: get-random-joke
+      description: Retrieve a random chuck joke in JSON format.
+  /favourites:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - favourites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JokeDTO'
+      operationId: get-favourites
+      description: Retrieve favourite jokes in JSON format.
+  '/favourites/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    delete:
+      summary: ''
+      tags:
+        - favourites
+      operationId: delete-favourite-joke
+      responses:
+        '200':
+          description: OK
+      description: Delete joke from favourites.
+    post:
+      summary: ''
+      tags:
+        - favourites
+      operationId: post-favourite-joke
+      responses:
+        '200':
+          description: OK
+      description: Add a joke to favourites.
+components:
+  schemas:
+    JokeDTO:
+      description: ''
+      type: object
+      properties:
+        created_at:
+          type: string
+          minLength: 1
+        icon_url:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+        url:
+          type: string
+          minLength: 1
+        value:
+          type: string
+          minLength: 1
+      required:
+        - created_at
+        - icon_url
+        - id
+        - updated_at
+        - url
+        - value
