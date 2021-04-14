@@ -1,8 +1,10 @@
 package hu.laki.mobillab.domain
 
 import hu.laki.mobillab.data.local.LocalDataSource
+import hu.laki.mobillab.data.local.model.toLocalJoke
 import hu.laki.mobillab.data.network.NetworkDataSource
 import hu.laki.mobillab.domain.model.Joke
+import hu.laki.mobillab.data.local.model.Joke as LocalJoke
 import hu.laki.mobillab.domain.model.toDomainJoke
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,22 +17,22 @@ class JokesInteractor @Inject constructor(
 
     suspend fun getRandomJoke(): Joke? {
         val response = networkDataSource.getRandomJoke() ?: return null
-        return response.toDomainJoke(response)
+        return response.toDomainJoke()
     }
 
     suspend fun getFavouriteJokes(): List<Joke> {
-        val response =  networkDataSource.getFavouriteJokes() ?: return emptyList()
-        return response.map { it.toDomainJoke(it) }
+        val response =  localDataSource.getFavouriteJokes()
+        return response.map { it.toDomainJoke() }
     }
 
     suspend fun addFavouriteJoke(joke: Joke): List<Joke> {
-        val response =  networkDataSource.addFavouriteJoke(joke.id) ?: return emptyList()
-        return response.map { it.toDomainJoke(it) }
+        val response =  localDataSource.addFavouriteJoke(joke.toLocalJoke())
+        return response.map { it.toDomainJoke() }
     }
 
     suspend fun deleteFavouriteJoke(joke: Joke): List<Joke> {
-        val response =  networkDataSource.deleteFavouriteJoke(joke.id) ?: return emptyList()
-        return response.map { it.toDomainJoke(it) }
+        val response =  localDataSource.deleteFavouriteJoke(joke.toLocalJoke())
+        return response.map { it.toDomainJoke() }
     }
 
 }

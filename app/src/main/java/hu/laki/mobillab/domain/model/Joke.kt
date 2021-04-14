@@ -1,6 +1,7 @@
 package hu.laki.mobillab.domain.model
 
 import hu.laki.mobillab.data.network.model.JokeDTO
+import hu.laki.mobillab.data.local.model.Joke as LocalJoke
 
 data class Joke(
         val id: String,
@@ -11,14 +12,24 @@ data class Joke(
         val value: String
 )
 
-fun JokeDTO.toDomainJoke(jokeDTO: JokeDTO): Joke {
+fun JokeDTO.toDomainJoke(): Joke {
         return Joke(
-                id = jokeDTO.id,
-                createdAt = jokeDTO.createdAt,
-                iconUrl = jokeDTO.iconUrl,
-                updatedAt = jokeDTO.updatedAt,
-                url = jokeDTO.url,
-                value = jokeDTO.value
+                id = id,
+                createdAt = createdAt,
+                iconUrl = iconUrl,
+                updatedAt = updatedAt,
+                url = url,
+                value = value
         )
 }
 
+fun LocalJoke.toDomainJoke(): Joke {
+        return Joke(
+                id = id,
+                createdAt = createdAt,
+                iconUrl = iconUrl,
+                updatedAt = updatedAt,
+                url = url,
+                value = value
+        )
+}
