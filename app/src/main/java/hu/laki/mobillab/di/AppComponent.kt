@@ -3,6 +3,7 @@ package hu.laki.mobillab.di
 import co.zsmb.rainbowcake.dagger.RainbowCakeComponent
 import co.zsmb.rainbowcake.dagger.RainbowCakeModule
 import dagger.Component
+import hu.laki.mobillab.data.local.LocalModule
 import hu.laki.mobillab.data.network.NetworkModule
 import javax.inject.Singleton
 
@@ -12,7 +13,8 @@ import javax.inject.Singleton
         RainbowCakeModule::class,
         ApplicationModule::class,
         ViewModelModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        LocalModule::class
     ]
 )
 interface AppComponent : RainbowCakeComponent

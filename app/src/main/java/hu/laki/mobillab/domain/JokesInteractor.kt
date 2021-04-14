@@ -1,7 +1,7 @@
 package hu.laki.mobillab.domain
 
+import hu.laki.mobillab.data.local.LocalDataSource
 import hu.laki.mobillab.data.network.NetworkDataSource
-import hu.laki.mobillab.data.network.model.JokeDTO
 import hu.laki.mobillab.domain.model.Joke
 import hu.laki.mobillab.domain.model.toDomainJoke
 import javax.inject.Inject
@@ -9,7 +9,8 @@ import javax.inject.Singleton
 
 @Singleton
 class JokesInteractor @Inject constructor(
-    private val networkDataSource: NetworkDataSource
+    private val networkDataSource: NetworkDataSource,
+    private val localDataSource: LocalDataSource
 ) {
 
     suspend fun getRandomJoke(): Joke? {
