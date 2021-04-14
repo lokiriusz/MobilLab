@@ -13,8 +13,23 @@ class JokesInteractor @Inject constructor(
 ) {
 
     suspend fun getRandomJoke(): Joke? {
-        val response: JokeDTO = networkDataSource.getRandomJoke() ?: return null
+        val response = networkDataSource.getRandomJoke() ?: return null
         return response.toDomainJoke(response)
+    }
+
+    suspend fun getFavouriteJokes(): List<Joke> {
+        val response =  networkDataSource.getFavouriteJokes() ?: return emptyList()
+        return response.map { it.toDomainJoke(it) }
+    }
+
+    suspend fun addFavouriteJoke(joke: Joke): List<Joke> {
+        val response =  networkDataSource.addFavouriteJoke(joke.id) ?: return emptyList()
+        return response.map { it.toDomainJoke(it) }
+    }
+
+    suspend fun deleteFavouriteJoke(joke: Joke): List<Joke> {
+        val response =  networkDataSource.deleteFavouriteJoke(joke.id) ?: return emptyList()
+        return response.map { it.toDomainJoke(it) }
     }
 
 }

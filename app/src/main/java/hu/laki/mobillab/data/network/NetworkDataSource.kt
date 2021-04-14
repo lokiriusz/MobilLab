@@ -14,4 +14,16 @@ class NetworkDataSource @Inject constructor(
                 return jokesApi.getRandomJoke().body()
         }
 
+        suspend fun getFavouriteJokes(): List<JokeDTO>? {
+                return null
+        }
+
+        suspend fun addFavouriteJoke(jokeId: String): List<JokeDTO>? {
+                return null
+        }
+
+        suspend fun deleteFavouriteJoke(jokeId: String): List<JokeDTO>? {
+                return null
+        }
+
 }
