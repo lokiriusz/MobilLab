@@ -57,6 +57,12 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JokeDTO'
       description: Delete joke from favourites.
     post:
       summary: ''
@@ -66,6 +72,12 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JokeDTO'
       description: Add a joke to favourites.
 components:
   schemas:
