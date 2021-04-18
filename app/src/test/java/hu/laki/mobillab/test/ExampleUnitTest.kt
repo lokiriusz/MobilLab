@@ -1,4 +1,4 @@
-package hu.laki.mobillab
+package hu.laki.mobillab.test
 
 import org.junit.Test
 

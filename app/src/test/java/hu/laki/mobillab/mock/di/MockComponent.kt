@@ -19,4 +19,4 @@ import javax.inject.Singleton
         LocalModule::class
     ]
 )
-interface TestComponent : RainbowCakeComponent
+interface MockComponent : RainbowCakeComponent
