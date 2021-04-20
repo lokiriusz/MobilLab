@@ -5,8 +5,11 @@ import android.view.View
 import androidx.core.view.isVisible
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
+import co.zsmb.rainbowcake.navigation.navigator
 import hu.laki.mobillab.R
 import hu.laki.mobillab.helpers.setToolbarTitle
+import hu.laki.mobillab.ui.about.AboutFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_jokes.*
 
 class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
@@ -18,8 +21,11 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         setToolbarTitle("Random Joke from Chuck")
-        refreshJoke.setOnClickListener {
+        refreshJokeButton.setOnClickListener {
             viewModel.refreshJoke()
+        }
+        aboutButton.setOnClickListener {
+            navigator?.replace(AboutFragment())
         }
     }
 
@@ -32,16 +38,16 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
     override fun render(viewState: JokesViewState) {
         when (viewState) {
             is LoadingJoke -> {
-                refreshJoke.isVisible = false
+                refreshJokeButton.isVisible = false
                 progressBar.isVisible = true
             }
             is JokeReady -> {
-                refreshJoke.isVisible = true
+                refreshJokeButton.isVisible = true
                 progressBar.isVisible = false
                 joke.text = viewState.joke.value
             }
             is JokeFailure -> {
-                refreshJoke.isVisible = true
+                refreshJokeButton.isVisible = true
                 progressBar.isVisible = false
                 joke.text = viewState.message
             }
