@@ -18,14 +18,6 @@ class AboutFragment : RainbowCakeFragment<AboutViewState, AboutViewModel>() {
         setToolbarTitle("About", true)
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        viewModel.load()
-    }
-
-    override fun render(viewState: AboutViewState) {
-        // TODO Render state
-    }
+    override fun render(viewState: AboutViewState) {}
 
 }

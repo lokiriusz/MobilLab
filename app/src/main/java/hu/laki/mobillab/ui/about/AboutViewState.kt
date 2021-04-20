@@ -2,6 +2,5 @@ package hu.laki.mobillab.ui.about
 
 sealed class AboutViewState
 
-object Loading : AboutViewState()
+object Idle : AboutViewState()
 
-data class AboutReady(val data: String = "") : AboutViewState()
