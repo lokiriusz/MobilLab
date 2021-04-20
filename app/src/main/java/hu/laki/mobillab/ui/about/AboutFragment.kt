@@ -5,6 +5,7 @@ import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import hu.laki.mobillab.R
+import hu.laki.mobillab.helpers.setToolbarTitle
 
 class AboutFragment : RainbowCakeFragment<AboutViewState, AboutViewModel>() {
 
@@ -14,7 +15,7 @@ class AboutFragment : RainbowCakeFragment<AboutViewState, AboutViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO Setup views
+        setToolbarTitle("About", true)
     }
 
     override fun onStart() {

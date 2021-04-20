@@ -9,7 +9,6 @@ import co.zsmb.rainbowcake.navigation.navigator
 import hu.laki.mobillab.R
 import hu.laki.mobillab.helpers.setToolbarTitle
 import hu.laki.mobillab.ui.about.AboutFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_jokes.*
 
 class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
@@ -21,11 +20,12 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         setToolbarTitle("Random Joke from Chuck")
+
         refreshJokeButton.setOnClickListener {
             viewModel.refreshJoke()
         }
         aboutButton.setOnClickListener {
-            navigator?.replace(AboutFragment())
+            navigator?.add(AboutFragment())
         }
     }
 
