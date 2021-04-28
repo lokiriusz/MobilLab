@@ -68,4 +68,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
+    <ImageButton
+        android:id="@+id/showFavourites"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:tint="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="@+id/addFavourites"
+        app:layout_constraintStart_toStartOf="@+id/addFavourites"
+        app:layout_constraintTop_toBottomOf="@+id/addFavourites"
+        app:srcCompat="?attr/actionModeSelectAllDrawable" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

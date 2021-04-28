@@ -9,6 +9,7 @@ import co.zsmb.rainbowcake.navigation.navigator
 import hu.laki.mobillab.R
 import hu.laki.mobillab.helpers.setToolbarTitle
 import hu.laki.mobillab.ui.about.AboutFragment
+import hu.laki.mobillab.ui.favourites.FavouritesFragment
 import kotlinx.android.synthetic.main.fragment_jokes.*
 
 class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
@@ -29,6 +30,9 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
         }
         addFavourites.setOnClickListener {
             viewModel.addJokeToFavourites()
+        }
+        showFavourites.setOnClickListener {
+            navigator?.add(FavouritesFragment())
         }
     }
 
