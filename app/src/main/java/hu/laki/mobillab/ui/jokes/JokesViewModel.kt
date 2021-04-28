@@ -20,4 +20,8 @@ class JokesViewModel @Inject constructor(
         }
     }
 
+    fun addJokeToFavourites() = execute {
+        presenter.addJokeToFavourites()
+    }
+
 }

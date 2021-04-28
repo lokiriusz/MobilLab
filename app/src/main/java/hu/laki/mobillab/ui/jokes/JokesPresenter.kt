@@ -8,12 +8,15 @@ import javax.inject.Inject
 class JokesPresenter @Inject constructor(
         private val jokesInteractor: JokesInteractor
 ) {
-
     private var joke: Joke? = null
 
     suspend fun getRandomJoke(): Joke? = withIOContext {
         joke = jokesInteractor.getRandomJoke()
         return@withIOContext joke
+    }
+
+    suspend fun addJokeToFavourites() = withIOContext {
+        joke?.let { jokesInteractor.addFavouriteJoke(it) }
     }
 
 }

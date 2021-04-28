@@ -27,6 +27,9 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
         aboutButton.setOnClickListener {
             navigator?.add(AboutFragment())
         }
+        addFavourites.setOnClickListener {
+            viewModel.addJokeToFavourites()
+        }
     }
 
     override fun onStart() {
@@ -38,15 +41,18 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
     override fun render(viewState: JokesViewState) {
         when (viewState) {
             is LoadingJoke -> {
+                addFavourites.isVisible = false
                 refreshJokeButton.isVisible = false
                 progressBar.isVisible = true
             }
             is JokeReady -> {
+                addFavourites.isVisible = true
                 refreshJokeButton.isVisible = true
                 progressBar.isVisible = false
                 joke.text = viewState.joke.value
             }
             is JokeFailure -> {
+                addFavourites.isVisible = false
                 refreshJokeButton.isVisible = true
                 progressBar.isVisible = false
                 joke.text = viewState.message
