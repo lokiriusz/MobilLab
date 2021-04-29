@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.navigation.navigator
+import com.google.android.material.snackbar.Snackbar
 import hu.laki.mobillab.R
 import hu.laki.mobillab.helpers.setToolbarTitle
 import hu.laki.mobillab.ui.about.AboutFragment
@@ -30,6 +31,7 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
         }
         addFavourites.setOnClickListener {
             viewModel.addJokeToFavourites()
+            Snackbar.make(it,"Adding to favourites...",Snackbar.LENGTH_LONG).show()
         }
         showFavourites.setOnClickListener {
             navigator?.add(FavouritesFragment())
