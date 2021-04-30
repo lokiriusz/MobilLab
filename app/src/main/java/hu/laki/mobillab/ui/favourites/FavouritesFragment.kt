@@ -1,5 +1,6 @@
 package hu.laki.mobillab.ui.favourites
 
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
@@ -24,9 +25,10 @@ class FavouritesFragment : RainbowCakeFragment<FavouritesViewState, FavouritesVi
     override fun render(viewState: FavouritesViewState) {
         when (viewState) {
             is LoadingFavourites -> {
-
+                progressBar.isVisible = true
             }
             is FavouritesReady -> {
+                progressBar.isVisible = false
                 listView.layoutManager = LinearLayoutManager(context)
                 listView.adapter = FavouritesListAdapter(viewState.favouriteJokes)
             }
