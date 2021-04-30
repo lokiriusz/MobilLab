@@ -30,7 +30,12 @@ class FavouritesFragment : RainbowCakeFragment<FavouritesViewState, FavouritesVi
             is FavouritesReady -> {
                 progressBar.isVisible = false
                 listView.layoutManager = LinearLayoutManager(context)
-                listView.adapter = FavouritesListAdapter(viewState.favouriteJokes)
+                listView.adapter = FavouritesListAdapter(
+                        favourites = viewState.favouriteJokes,
+                        deleteFavouriteJokeEvent = { joke ->
+                            viewModel.deleteFavouriteJoke(joke)
+                        }
+                )
             }
         }
     }

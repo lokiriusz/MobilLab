@@ -13,4 +13,8 @@ class FavouritesPresenter @Inject constructor(
         return@withIOContext jokesInteractor.getFavouriteJokes()
     }
 
+    suspend fun deleteFavouriteJoke(joke: Joke) = withIOContext {
+        return@withIOContext jokesInteractor.deleteFavouriteJoke(joke)
+    }
+
 }
