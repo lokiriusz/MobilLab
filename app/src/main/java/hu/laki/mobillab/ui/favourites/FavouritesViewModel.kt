@@ -6,15 +6,15 @@ import javax.inject.Inject
 
 class FavouritesViewModel @Inject constructor(
     private val presenter: FavouritesPresenter
-) : RainbowCakeViewModel<FavouritesViewState>(LoadingFavourites) {
+) : RainbowCakeViewModel<FavouritesViewState>(FavouritesLoading) {
 
     fun loadFavourites() = execute {
-        viewState = LoadingFavourites
+        viewState = FavouritesLoading
         viewState = FavouritesReady(presenter.getFavourites())
     }
 
     fun deleteFavouriteJoke(joke: Joke) = execute {
-        viewState = LoadingFavourites
+        viewState = FavouritesLoading
         viewState = FavouritesReady(presenter.deleteFavouriteJoke(joke))
     }
 

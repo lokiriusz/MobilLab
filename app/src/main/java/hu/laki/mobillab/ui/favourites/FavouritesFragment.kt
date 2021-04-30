@@ -24,7 +24,7 @@ class FavouritesFragment : RainbowCakeFragment<FavouritesViewState, FavouritesVi
 
     override fun render(viewState: FavouritesViewState) {
         when (viewState) {
-            is LoadingFavourites -> {
+            is FavouritesLoading -> {
                 progressBar.isVisible = true
             }
             is FavouritesReady -> {
