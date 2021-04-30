@@ -1,30 +1,36 @@
 package hu.laki.mobillab.ui.favourites
 
-import android.os.Bundle
-import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import hu.laki.mobillab.R
+import hu.laki.mobillab.helpers.setToolbarTitle
+import hu.laki.mobillab.ui.favourites.adapter.FavouritesListAdapter
+import kotlinx.android.synthetic.main.fragment_favourites.*
 
 class FavouritesFragment : RainbowCakeFragment<FavouritesViewState, FavouritesViewModel>() {
 
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_favourites
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // TODO Setup views
-    }
-
     override fun onStart() {
         super.onStart()
 
-        viewModel.load()
+        setToolbarTitle("Favourite Jokes", true)
+
+        viewModel.loadFavourites()
     }
 
     override fun render(viewState: FavouritesViewState) {
-        // TODO Render state
+        when (viewState) {
+            is LoadingFavourites -> {
+
+            }
+            is FavouritesReady -> {
+                listView.layoutManager = LinearLayoutManager(context)
+                listView.adapter = FavouritesListAdapter(viewState.favouriteJokes)
+            }
+        }
     }
 
 }

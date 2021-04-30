@@ -5,10 +5,10 @@ import javax.inject.Inject
 
 class FavouritesViewModel @Inject constructor(
     private val presenter: FavouritesPresenter
-) : RainbowCakeViewModel<FavouritesViewState>(Loading) {
+) : RainbowCakeViewModel<FavouritesViewState>(LoadingFavourites) {
 
-    fun load() = execute {
-        viewState = FavouritesReady(presenter.getData())
+    fun loadFavourites() = execute {
+        viewState = FavouritesReady(presenter.getFavourites())
     }
 
 }
