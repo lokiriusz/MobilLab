@@ -37,10 +37,11 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/refreshJokeButton"
-        app:layout_constraintEnd_toEndOf="@+id/refreshJokeButton"
-        app:layout_constraintStart_toStartOf="@+id/refreshJokeButton"
-        app:layout_constraintTop_toTopOf="@+id/refreshJokeButton" />
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/aboutButton"
