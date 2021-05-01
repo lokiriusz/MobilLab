@@ -6,9 +6,11 @@ import androidx.core.view.isVisible
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.navigation.navigator
+import com.google.android.material.snackbar.Snackbar
 import hu.laki.mobillab.R
 import hu.laki.mobillab.helpers.setToolbarTitle
 import hu.laki.mobillab.ui.about.AboutFragment
+import hu.laki.mobillab.ui.favourites.FavouritesFragment
 import kotlinx.android.synthetic.main.fragment_jokes.*
 
 class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
@@ -27,6 +29,13 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
         aboutButton.setOnClickListener {
             navigator?.add(AboutFragment())
         }
+        addFavourites.setOnClickListener {
+            viewModel.addJokeToFavourites()
+            Snackbar.make(it,"Adding to favourites...",Snackbar.LENGTH_LONG).show()
+        }
+        showFavourites.setOnClickListener {
+            navigator?.add(FavouritesFragment())
+        }
     }
 
     override fun onStart() {
@@ -38,15 +47,18 @@ class JokesFragment : RainbowCakeFragment<JokesViewState, JokesViewModel>() {
     override fun render(viewState: JokesViewState) {
         when (viewState) {
             is LoadingJoke -> {
+                addFavourites.isVisible = false
                 refreshJokeButton.isVisible = false
                 progressBar.isVisible = true
             }
             is JokeReady -> {
+                addFavourites.isVisible = true
                 refreshJokeButton.isVisible = true
                 progressBar.isVisible = false
                 joke.text = viewState.joke.value
             }
             is JokeFailure -> {
+                addFavourites.isVisible = false
                 refreshJokeButton.isVisible = true
                 progressBar.isVisible = false
                 joke.text = viewState.message
